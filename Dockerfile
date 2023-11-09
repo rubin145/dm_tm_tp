@@ -16,6 +16,7 @@ RUN python -m pip install --no-cache-dir -r requirements.txt
 #/app/webapp
 WORKDIR /app
 COPY ./webapp /app
+COPY ./pysentimiento /app
 
 RUN pip install -e /app/pysentimiento
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
