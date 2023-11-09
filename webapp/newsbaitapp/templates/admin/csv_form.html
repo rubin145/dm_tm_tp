@@ -1,0 +1,13 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    <h1>Upload a CSV file to {{ model_name }}</h1>
+    <p>{{ format_specifications }}</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+    <br><br>
+    <a href="{% url 'admin:index' %}"><button>Return to admin</button></a>
+{% endblock %}

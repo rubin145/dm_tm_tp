@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1>¡Bienvenido a NewsBait!</h1>
+        <p>
+            Gracias por participar en nuestro experimento.
+            
+            Te vamos a presentar varios títulos de noticias para que elijas el que más interés te genere.
+            <br>Para eso, primero vas a indicarnos una sección temática y luego vas a poder elegir tópicos que consumas habitualmente.
+            <br>Luego vas a poder juzgar la correspondencia del título elegido con el contenido del artículo.
+        </p>
+        <p>
+            Nuestro objetivo es analizar la capacidad de la IA de generar títulos coherentes, relevantes, atractivos y personalizados para los usuarios.
+        </p>
+        <hr>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Ingresá tu correo electrónico para empezar:</label>
+                {{ form.email }}
+            </div>
+            <button type="submit" class="btn btn-primary">Iniciar experimento</button>
+        </form>
+        <p>
+            <br>*Podés participar cuantas veces quieras, pero en ese caso, elegí distintas secciones.
+        </p>
+
+    </div>
+{% endblock %}

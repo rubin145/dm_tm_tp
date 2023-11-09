@@ -1,0 +1,8 @@
+cc.es.300.bin
+cc.es.300.bin.gz
+Pipfile
+Pipfile.lock
+db.sqlite3
+.vscode
+__pycache__/
+*.py[cod]

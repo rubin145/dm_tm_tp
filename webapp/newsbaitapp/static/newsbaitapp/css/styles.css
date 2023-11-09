@@ -1,0 +1,274 @@
+/* Custom Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e9ecef 100%);
+    color: #333;
+}
+
+.navbar {
+    margin-bottom: 40px;
+}
+
+.elevated-nav {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+footer {
+    font-size: 14px;
+    color: #7f8c8d;
+    padding: 15px 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.card {
+    transition: 0.3s;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-btn {
+    transition: 0.3s;
+    margin: 5px;
+}
+
+.tag-btn:hover {
+    transform: scale(1.1);
+}
+
+.tag-btn.selected {
+    background-color: #EAEAEA; /* A light gray for the background */
+    color: #333; /* A dark gray for the text */
+    border-color: #ccc; /* A slightly darker gray for the border */
+}
+
+.title-comparison-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.title-option {
+    flex: 1;
+    flex-basis: calc(50% - 10px); /* Grow and shrink equally, basis of 0px */
+    padding: 20px;
+    font-size: 1.5em;
+    border: 2px solid #007BFF;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Add min-width or max-width if you want to control the sizing further */
+}
+
+.title-option:hover,
+.title-option.selected {
+    background-color: #007BFF;
+    color: white;
+}
+
+.title-option input[type="radio"] {
+    display: none;
+}
+
+.article-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 30px; 
+}
+
+.article-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid #333;
+    padding-top: 60px;
+    padding-bottom: 10px;
+}
+
+.article-content {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.concordance-selector {
+    text-align: center; /* Center the content horizontally */
+    position: relative; /* Use relative positioning */
+    z-index: 10; /* Ensure it's above other content */
+    margin-bottom: 30px; /* Space before the next content block */
+}
+
+.concordance-selector form {
+    display: inline-block; /* Make the form content center within its parent */
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: -60px; /* Adjust this value as needed to position the selector over the title */
+    position: relative;
+    z-index: 2; /* Ensures that the form is above the title */
+}
+
+#concordanceRange {
+    width: 300px;
+    background: linear-gradient(90deg, red, yellow, green);
+    cursor: pointer;
+    appearance: none;
+    height: 10px;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+#concordanceRange:hover {
+    opacity: 1;
+}
+
+#concordanceRange::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#concordanceRange::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;  /* Make the button block level so it takes the full width */
+    
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.multi-title-comparison-container {
+    display: flex;
+    flex-wrap: wrap; /* This allows the titles to wrap into multiple rows if there are more than can fit in one row */
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.multi-title-option {
+    flex-basis: calc(50% - 10px); /* Assuming two titles per row, adjust accordingly */
+    padding: 20px;
+    font-size: 1.2em;
+    border: 2px solid #007BFF;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.multi-title-option:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+.multi-title-option input[type="radio"] {
+    display: none;
+}
+
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensures full height centering */
+    text-align: center; /* Centers the text */
+}
+
+.form-container {
+    background-color: #f9f9f9; /* Light grey background for the form */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for a 'lifted' effect */
+    border: 1px solid #ddd; /* Light border for the form */
+    margin-bottom: 30px; /* Separation from the 'Volver a participar' button */
+    width: 100%;
+    max-width: 500px;
+}
+
+.userdatafeedback-form {
+    margin: 0; /* Resetting margin to ensure alignment */
+}
+
+.btn-enviar {
+    width: 100%;
+    margin-top: 20px; /* Adding space above the button */
+}
+
+.volver-participar {
+    width: 200px; /* Fixed width for the 'Volver a participar' button */
+    background-color: #28a745; /* A green color for contrast */
+    border-color: #28a745;
+    margin-top: 30px; /* Increased separation from the form */
+}
+
+/* Additional responsive adjustments if necessary */
+@media (max-width: 576px) {
+    .volver-participar {
+        width: 100%; /* Full width on smaller screens */
+    }
+}

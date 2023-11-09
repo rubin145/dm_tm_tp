@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<script>
+    // Define a variable in JavaScript based on the mode passed from the backend
+    var isMultiArticleMode = {{ is_multi_article_mode|yesno:"true,false" }};
+</script>
+<h2>Elegí el título que más te interese<br><br></h2>
+<form id="{{ form_id }}" method="post" action="{% url form_action_url %}" novalidate>
+    {% csrf_token %}
+    <div class="{{ container_class }}">
+        {% for title, uid, is_ai, position in options %}
+            <label class="{{ label_class }}" onclick="submitTitle('{{ uid }}', '{{ title|escapejs }}', '{{ is_ai }}', '{{ position }}')">
+                <input type="radio" name="title_preference_uid" value="{{ uid }}" style="display: none;">
+                {{ title }}
+            </label>
+        {% endfor %}
+        <!-- Hidden input for the title text and other attributes -->
+        <input type="hidden" name="title_preference_text" id="titlePreferenceText" value="">
+        <input type="hidden" name="title_preference_ai" id="titlePreferenceIsAI" value="">
+        <input type="hidden" name="title_preference_position" id="titlePreferencePosition" value="">
+    </div>
+</form>
+
+{% endblock %}

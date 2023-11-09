@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  dmtmtp:  # The service name should match the one in your docker-compose.yml if it's the same service.
+    build:  # You're building the service from the Dockerfile.
+      context: .
+      dockerfile: Dockerfile
+    command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8000 --nothreading --noreload"]
+    volumes:
+      - .:/app # Mount the current directory to /app in the container
+    ports:
+      - "8000:8000" # Port 8000 is mapped for the application.
+      - "5678:5678" # Port 5678 is mapped for debugpy.
+    depends_on:
+      - db  # Ensures that the db service is started first.
+
+  db:  # This should match the db service in your docker-compose.yml.
+    image: postgres:13
+    volumes:
+      - "postgres_data:/var/lib/postgresql/data/"  # Ensure the volume is in quotes
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=grupo1
+      - POSTGRES_DB=mydb
+
+volumes:
+  postgres_data:  # Define the volume used by the db service.

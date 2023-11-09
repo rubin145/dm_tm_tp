@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  dmtmtp:  # This is the name of your service. Use 'dmtmtp' when referring to this service.
+    build:  # This indicates that Docker should build the image.
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"  # Maps port 8000 of the container to port 8000 on the host.
+    depends_on:
+      - db  # This service depends on the 'db' service.
+    environment:
+      - DATABASE_URL=postgres://myuser:mypass@db/mydb
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=grupo1
+      - POSTGRES_DB=mydb
+
+volumes:
+  postgres_data:

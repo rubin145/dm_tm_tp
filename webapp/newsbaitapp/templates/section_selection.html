@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <h2>Seleccioná una sección</h2>
+    <p>Elegí la sección que te interesa:</p>
+
+    <form method="post" action="{% url 'section_selection' %}">
+        {% csrf_token %}
+        
+        <div class="row">
+            {% for section in sections %}
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ section }}</h5>
+                            <button type="submit" class="btn btn-primary btn-block" name="selected_section" value="{{ section }}">Elegir</button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+</div>
+
+{% endblock %}

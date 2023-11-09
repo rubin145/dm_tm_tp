@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="centered-container">
+    <div class="form-container">
+        <h2>¡Gracias por participar!<br><br></h2>
+        <p>Agradecemos tu tiempo y esfuerzo. Tu aporte será utilizado para el enriquecer el conocimiento universal de la conducta humana y cómo manipularla.</p>
+
+        <p>De manera opcional, podés dejarnos estos datos sobre vos y/o un comentario</p>
+
+        <form id="userdatafeedback-form" method="post" class="userdatafeedback-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary btn-enviar">Enviar</button>
+        </form>
+    </div>
+    <a href="{% url 'register' %}" class="btn btn-secondary btn-lg my-4 volver-participar" id="retry-button">Volver a participar</a>
+</div>
+<div id="form-response-message"></div>
+{% endblock %}

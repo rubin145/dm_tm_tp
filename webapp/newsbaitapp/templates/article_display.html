@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Concordance Selector moved above the Article Container -->
+<div class="concordance-selector">
+    <form method="post" action="{% url 'article_display' %}">
+        {% csrf_token %}
+        <p>¿Se corresponde el contenido del artículo con lo que esperabas por el título?</p>
+        <input type="range" id="concordanceRange" name="concordance_score" min="1" max="4" step="1">
+        <button type="submit">Enviar</button>
+    </form>
+</div>
+
+<!-- Article Container -->
+<div class="article-container">
+    <h1 class="article-title">{{ selected_title }}</h1>
+    <p class="article-content">
+        <!-- Sample content for representation, replace this with actual content -->
+        {{article_text}}
+    </p>
+</div>
+
+{% endblock %}

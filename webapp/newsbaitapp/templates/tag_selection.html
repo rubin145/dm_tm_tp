@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <h2>Seleccioná las etiquetas</h2>
+    <p>Elegí las etiquetas que te interesen:</p>
+
+    <form method="post" action="{% url 'tag_selection' %}">
+        {% csrf_token %}
+        
+        <div id="tag-cloud">
+            {% for tag in tags %}
+                <button type="button" class="btn btn-outline-primary m-2 tag-btn" data-tag="{{ tag }}">{{ tag }}</button>
+            {% endfor %}
+            <input type="hidden" id="selectedTags" name="selected_tags" value="">
+        </div>
+
+        <div id="limit-message" class="mt-3 alert alert-info" style="display:none;">
+            Alcanzaste el límite de {{ maxTags }} etiquetas. Deseleccioná una etiqueta si deseas elegir otra.
+        </div>        
+        <button type="submit" class="btn btn-primary mt-3">Continuar</button>
+    </form>
+</div>
+
+<script>
+let selectedTags = [];
+const maxTags = 5;
+
+document.querySelectorAll('.tag-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        if (btn.classList.contains('selected')) {
+            btn.classList.remove('selected');
+            btn.classList.remove('btn-secondary');
+            btn.classList.add('btn-outline-secondary');
+
+            const index = selectedTags.indexOf(btn.getAttribute('data-tag'));
+            if (index > -1) {
+                selectedTags.splice(index, 1);
+            }
+
+            // Remove the limit message when a tag is deselected
+            document.getElementById('limit-message').style.display = 'none';
+        } else if (selectedTags.length < maxTags) {
+            btn.classList.add('selected');
+            btn.classList.remove('btn-outline-secondary');
+            btn.classList.add('btn-secondary');
+            selectedTags.push(btn.getAttribute('data-tag'));
+
+            // Display the limit message when the maximum number of tags is reached
+            if (selectedTags.length === maxTags) {
+                document.getElementById('limit-message').style.display = 'block';
+            }
+        }
+        document.getElementById('selectedTags').value = selectedTags.join(',');
+    });
+});
+</script>
+{% endblock %}
