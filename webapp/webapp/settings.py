@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['192.34.61.192:8000','192.34.61.192']
 
+CSRF_TRUSTED_ORIGINS = ['192.34.61.192:8000','192.34.61.192']
+
 
 # Application definition
 
