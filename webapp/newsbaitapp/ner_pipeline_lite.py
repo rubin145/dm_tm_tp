@@ -184,7 +184,7 @@ class NERPipelineLite:
 
     def lazy_load_fasttext(self):
         import fasttext
-        return fasttext.load_model('cc.es.300.bin')
+        return fasttext.load_model('heavy_files/cc.es.300.bin')
 
     def lazy_load_transformers(self):
         from transformers import AutoTokenizer, AutoModel
