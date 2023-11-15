@@ -209,16 +209,20 @@ def upload_news(request):
             reader = csv.DictReader(csv_file.read().decode('utf-8').splitlines())
             date_format = '%Y-%m-%d'
             
+
             for row in reader:
                 try:
+                    # Extract and clean the date string
                     date_string = row['fecha'].replace('Publicado: ', '').strip()
-                    date_string = " ".join(row['fecha'].split()[:-1])
-                    date_string = date_string.replace('a.m.', 'AM').replace('p.m.', 'PM')
-                    date_string = date_string.replace('.', '')
-                    parsed_date = datetime.strptime(date_string, date_format).date()
+                    # If 'fecha' contains a time after the date, it's removed here
+                    date_string = date_string.split(' ')[0]
+
+                    # Parse the date string into a datetime object
+                    parsed_date = datetime.strptime(date_string, '%Y-%m-%d').date()
                 except ValueError as e:
                     messages.error(request, f"Invalid date format for news article '{row['titular']}': {e}")
                     continue
+
 
                 news, created = News.objects.get_or_create(
                     unique_id=row['unique_id'],
