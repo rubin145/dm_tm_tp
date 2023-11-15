@@ -306,19 +306,20 @@ class Editor:
         self.test_type = test_type
         self.articles = []
 
+
+
+
     def fetch_articles(self):
         """
         Fetches the relevant articles based on section and tags.
         """
         # Fetch all articles that match the section
-        matching_articles = News.objects.filter(section=self.section)
-
         tag_list = self.tags[0].split(',') #esto debe ser arreglado antes, la lista de selected_tags se ve así: ['bolsillos cifras,represas,SEC'] (es una lista de un string con tags concatenadas)
         # Filter articles that match at least one tag
-        matching_articles = [
-            article for article in matching_articles
-            if any(tag.strip() in (entity.tag for entity in article.entities.all()) for tag in tag_list)
-        ]
+        matching_articles = News.objects.filter(
+            section=self.section,
+            entities__tag__in=tag_list
+        ).distinct()
 
         # Define number of articles based on test type
         if self.test_type == "title_comparison":
@@ -330,10 +331,7 @@ class Editor:
                 num_articles = 6
 
         # If there are more matching articles than the required number, select a random subset
-        if len(matching_articles) > num_articles:
-            self.articles = sample(matching_articles, num_articles)
-        else:
-            self.articles = matching_articles
+        self.articles = sample(list(matching_articles), min(num_articles, len(matching_articles)))
         
         #para duplicar en caso de title_comparison
         if len(self.articles) == 1:

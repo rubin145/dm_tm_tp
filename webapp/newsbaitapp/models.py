@@ -55,7 +55,7 @@ class News(models.Model):
     date = models.DateField()
     author = models.CharField(max_length=200)
     newspaper_name = models.CharField(max_length=200)
-    section = models.CharField(max_length=100)
+    section = models.CharField(max_length=100,db_index=True)
     pompadour = models.TextField()
     title = models.TextField()
     text = models.TextField()
@@ -67,9 +67,9 @@ class News(models.Model):
 
 class Entity(models.Model):
     tag = models.CharField(max_length=100)
-    section = models.CharField(max_length=100, null=True)
+    section = models.CharField(max_length=100, null=True, db_index=True)
     document_indices = models.TextField()  # For storing list of indices; consider JSONField if using Postgres.
-    appearances = models.IntegerField()
+    appearances = models.IntegerField(db_index=True)
     occurrences = models.IntegerField()
     synonyms = models.TextField()  # Similar to document_indices
     n_synonyms = models.IntegerField()
