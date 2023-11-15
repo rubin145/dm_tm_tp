@@ -92,8 +92,9 @@ input[type="email"] {
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
     min-height: 200px;
     flex-direction: column;
     align-items: center;
