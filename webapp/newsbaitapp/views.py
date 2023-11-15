@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
 from django.contrib.admin.views.decorators import staff_member_required
-from .forms import RegistrationForm, UserDataAndFeedbackForm, CSVImportForm, NERPipelineForm
+from .forms import RegistrationForm, UserDataAndFeedbackForm, CSVImportForm
 from .models import Experiment, News, Configuration, Entity
 from random import choice, shuffle, sample, randint, seed
 from .ai_title_generator import ai_title_generator as title_user_optimization
