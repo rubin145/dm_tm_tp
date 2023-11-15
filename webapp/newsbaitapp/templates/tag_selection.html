@@ -18,7 +18,7 @@
         <div id="limit-message" class="mt-3 alert alert-info" style="display:none;">
             Alcanzaste el límite de {{ maxTags }} etiquetas. Deseleccioná una etiqueta si deseas elegir otra.
         </div>        
-        <button type="submit" class="btn btn-primary mt-3">Continuar</button>
+        <button type="submit" class="btn btn-primary mt-3" onclick="this.disabled=true;this.form.submit();">Continuar</button>
     </form>
 </div>
 

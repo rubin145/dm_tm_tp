@@ -10,5 +10,4 @@ urlpatterns = [
     path('thank-you/', views.thank_you_view, name='thank_you'),
     path('admin/upload_entities/', views.upload_entities, name='upload_entities'),
     path('admin/upload_news/', views.upload_news, name='upload_news'),
-    path('ner-pipeline-input/', views.ner_pipeline_view, name='ner_pipeline_input'),
 ]

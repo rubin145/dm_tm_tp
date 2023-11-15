@@ -21,7 +21,7 @@
                 <label for="email">Ingresá tu correo electrónico para empezar:</label>
                 {{ form.email }}
             </div>
-            <button type="submit" class="btn btn-primary">Iniciar experimento</button>
+            <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Iniciar experimento</button>
         </form>
         <p>
             <br>*Podés participar cuantas veces quieras, pero en ese caso, elegí distintas secciones.

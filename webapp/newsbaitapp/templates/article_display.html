@@ -7,7 +7,7 @@
         {% csrf_token %}
         <p>¿Se corresponde el contenido del artículo con lo que esperabas por el título?</p>
         <input type="range" id="concordanceRange" name="concordance_score" min="1" max="4" step="1">
-        <button type="submit">Enviar</button>
+        <button type="submit" onclick="this.disabled=true;this.form.submit();">Enviar</button>
     </form>
 </div>
 

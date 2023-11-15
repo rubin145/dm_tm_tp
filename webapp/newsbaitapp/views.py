@@ -11,7 +11,6 @@ from .forms import RegistrationForm, UserDataAndFeedbackForm, CSVImportForm, NER
 from .models import Experiment, News, Configuration, Entity
 from random import choice, shuffle, sample, randint, seed
 from .ai_title_generator import ai_title_generator as title_user_optimization
-from .ner_pipeline_lite import ner_pipeline
 
 def register(request):
     request.session['current_step'] = ('start',0)
@@ -262,44 +261,6 @@ def upload_news(request):
     return render(request, 'admin/csv_form.html', {'form': form,
                                                    'model_name': model_name,
                                                    'format_specifications': format_specifications})
-
-@staff_member_required
-def ner_pipeline_view(request):
-    title = "NER Pipeline"
-    instructions = """
-Se carga un archivo con noticias y se aplica este procedimiento:
-    0. El archivo debe tener solamente noticias que pertenezcan al mismo grupo o sección. El campo selection es el nombre que se le asignará a la sección independientemente del que viniera de origen.
-    1. Detección de entidades (según el algoritmo elegido) en cada texto de artículo.
-    2. Filtrado automático de entidades por tipo (para fasttext, sólo sustantivos; en robertuito no hay filtro)
-    3. Agrupamiento de entidades (desambiguación / normalización / resolución)
-        a. Se obtienen los vectores de todas las entidades según el embedding seleccionado.
-        b. Se aplica el algoritmo de clustering seleccionado sobre esos vectores (según los parámetros definidos para cada algoritmo)
-        c. A cada cluster de entidades se le asigna un nombre representativo (tag) basado en el centroide (clust. jerárquico) o core points (dbscan).
-        d. Se forma un dataframe de entidades con la etiqueta de cada clusters, las entidades orgiinales (sinónimos), la cantidad de apariciones y ocurrencias del cluster, y los ID's de los artículos en los que aparece.
-        e. Se agrega al dataset de noticias original una columna con los clusters de entidades (según etiqueta representativa) que aparecen en cada artículo. También se modifica el contenido de la columna sección.
-        f. Se descarga un archivo comprimido con el dataset de entidades, el dataset de noticias modificado y un resumen de los resultados.
-    
-"""
-    if request.method == 'POST':
-        form = NERPipelineForm(request.POST, request.FILES)
-        if form.is_valid():
-            # process the csv file and form fields
-            csv_file = request.FILES['csv_file']
-            buffer = ner_pipeline(csv_file,form.cleaned_data)
-            response = HttpResponse(content_type='application/zip')
-            response['Content-Disposition'] = 'attachment; filename=results.zip'
-            response.write(buffer.read())
-            
-            return response
-            # You will need to handle downloading two files separately, possibly through two HTTP responses or by zipping them together.
-    else:
-        form = NERPipelineForm()
-
-    return render(request, 'ner_pipeline_input.html', {'form': form,
-                                                       'title': title,
-                                                       'instructions': instructions
-                                                       }
-                                                       )
 
 class Moderator:
     try:

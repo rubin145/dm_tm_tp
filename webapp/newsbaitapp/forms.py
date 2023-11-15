@@ -40,33 +40,3 @@ class UserDataAndFeedbackForm(forms.Form):
 
 class CSVImportForm(forms.Form):
     csv_file = forms.FileField()
-
-
-class NERPipelineForm(forms.Form):
-    SELECTION_CHOICES = (
-        # Define selection choices if needed
-    )
-    NER_MODEL_CHOICES = (
-        ('es_core_news_md', 'es_core_news_md'),
-        ('robertuito', 'roBERTuito'),
-        # ... other model choices
-    )
-    EMBEDDING_CHOICES = (
-        ('fasttext', 'fasttext'),
-        ('robertuito', 'roBERTuito'),
-        # ... other model choices
-    )
-    CLUSTERING_ALG_CHOICES = (
-        ('hierarchical', 'Hierarchical'),
-        ('dbscan', 'DBSCAN'),
-        # ... other algorithm choices
-    )
-
-    selection = forms.CharField(required=True)
-    ner_model = forms.ChoiceField(choices=NER_MODEL_CHOICES, initial='es_core_news_md')
-    embedding = forms.ChoiceField(choices=EMBEDDING_CHOICES, required=True)
-    clustering_alg = forms.ChoiceField(choices=CLUSTERING_ALG_CHOICES, initial='hierarchical')
-    hier_threshold = forms.FloatField(required=True,initial=0.9)
-    dbs_eps = forms.FloatField(required=True,initial=0.1)
-    dbs_min_samples = forms.IntegerField(required=True,initial=5)
-    csv_file = forms.FileField(required=True)
