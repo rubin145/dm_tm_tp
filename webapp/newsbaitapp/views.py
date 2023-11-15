@@ -207,7 +207,7 @@ def upload_news(request):
         if form.is_valid():
             csv_file = request.FILES['csv_file']
             reader = csv.DictReader(csv_file.read().decode('utf-8').splitlines())
-            date_format = '%d %b, %Y %I:%M %p'
+            date_format = '%Y-%m-%d'
             
             for row in reader:
                 try:
