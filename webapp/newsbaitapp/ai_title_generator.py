@@ -53,7 +53,7 @@ def ai_title_generator(text, tags):
 
         result = {
             #'response':response,
-            'title': response['choices'][0]['message']['content'].strip(),
+            'title': response['choices'][0]['message']['content'].strip().replace('{{','').replace('}}',''),
             'input_token_count': input_token_count,
             'output_token_count': output_token_count,
             'input_spend': input_spend,

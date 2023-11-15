@@ -7,5 +7,12 @@ Tiene que seguir las líneas de estilo de un medio digital de noticias propio de
 - mantener la correspondencia del título con el contenido de la noticia.
 - respetar el límite de palabras: 10 palabras.
 
-Debe generar 1 Output para cada Input. No debe haber otros elementos en el mensaje más que el título generado.
+Debe generar 1 Output en total. El título generado (UNO SOLO), debe estar encerrado entre corchetes de las siguiente manera (no debe haber otros elementos en el mensaje):
+{{Este es un título de ejemplo}}
+
+Formato incorrectos (uso incorrecto de comillas):
+{{"Este es un título de ejemplo"}}
+
+Uso correcto de comillas (como se usan habitualmente en los títulos, para incluir citas o llamar la atención sobre una palabra):
+{{Este es un título de ejemplo y esta es una "cita" relevante}}
 """

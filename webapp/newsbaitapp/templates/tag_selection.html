@@ -10,7 +10,7 @@
         
         <div id="tag-cloud">
             {% for tag in tags %}
-                <button type="button" class="btn btn-outline-primary m-2 tag-btn" data-tag="{{ tag }}">{{ tag }}</button>
+                <button type="button" class="btn btn-outline-primary m-2 tag-btn" data-tag="{{ tag }}">{{ tag|cut:"////"|cut:"///"|cut:"//" }}</button>
             {% endfor %}
             <input type="hidden" id="selectedTags" name="selected_tags" value="">
         </div>
