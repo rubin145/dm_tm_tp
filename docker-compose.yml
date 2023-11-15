@@ -11,9 +11,6 @@ services:
       - db  # This service depends on the 'db' service.
     environment:
       - DATABASE_URL=postgres://myuser:mypass@db/mydb
-    volumes:
-      #- .:/app
-      - ./heavy_files:/app/heavy_files
 
   db:
     image: postgres:13
